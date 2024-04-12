@@ -6,6 +6,7 @@ name: Node.js CI
 on:
   push:
     branches: [ "feature/test" ]
+ 
 
 jobs:
   build:
@@ -14,32 +15,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [v18.12.1]
-<<<<<<< HEAD
+        node-version: [ 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-=======
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/  sadf  
 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
->>>>>>> origin/main
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run:  |
+    - run: |
           cd SupportTicketSystem-master\backend
-<<<<<<< HEAD
-          npm run build
-    - run: npm run build 
-=======
           npm install
           npm run
-  
->>>>>>> origin/main
