@@ -28,7 +28,7 @@ class ShowTickets extends Component {
 
   getTicket = test => {
     return axios
-      .get('tickets/getTicketAll', {
+      .get('http://34.173.225.143:5000/tickets/getTicketAll', {
         
       })
       .then(response => {
@@ -141,7 +141,7 @@ class ShowTickets extends Component {
 
   changeStatus (id,status) {
     return axios
-      .put('tickets/changeStatus', {
+      .put('http://34.173.225.143:5000/tickets/changeStatus', {
         id,
         status
         
@@ -159,7 +159,7 @@ class ShowTickets extends Component {
   } 
   statusFilter (status) {
     return axios
-      .post('tickets/filterStatus', {
+      .post('http://34.173.225.143:5000/tickets/filterStatus', {
         status
       })
       .then(response => {
@@ -180,7 +180,7 @@ class ShowTickets extends Component {
 
   addMessage (id,messages) {
     return axios
-      .post('tickets/addMessages', {
+      .post('http://34.173.225.143:5000/tickets/addMessages', {
         id,messages
       })
       .then(response => {
@@ -205,13 +205,13 @@ class ShowTickets extends Component {
   statusName(status) {
     switch(status) {
       case 0:
-        return <h5><Badge pill variant="primary">Opening</Badge></h5>
+        return <h5><Badge pill variant="primary">Abierto</Badge></h5>
         case 1:
-          return <h5><Badge pill variant="danger">Waiting</Badge></h5>
+          return <h5><Badge pill variant="danger">Espera</Badge></h5>
           case 2:
-            return <h5><Badge pill variant="success">Closed</Badge></h5>
+            return <h5><Badge pill variant="success">Cerrado</Badge></h5>
       default:
-        return <h5><Badge pill variant="primary">Opening</Badge></h5>
+        return <h5><Badge pill variant="primary">Abierto</Badge></h5>
     }
   }
 
@@ -237,13 +237,13 @@ class ShowTickets extends Component {
           {this.state.role === 1 ?
         <div className="jumbotron mt-5">
           <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">ADMIN PAGE<br></br>TICKETS</h1>
+            <h1 className="text-center">Administrador <br></br>TICKETS</h1>
           </div>
           
-          <Button variant="primary" className="mx-1" onClick={()=>this.statusFilter(0)}>Opening</Button>
-          <Button variant="danger" className="mx-1" onClick={()=>this.statusFilter(1)}>Waiting</Button>
-          <Button variant="success" className="mx-1" onClick={()=>this.statusFilter(2)}>Closed</Button>
-          <Button variant="dark" className="mx-1" onClick={()=>this.getTicket()}>ALL</Button>
+          <Button variant="primary" className="mx-1" onClick={()=>this.statusFilter(0)}>Abierto</Button>
+          <Button variant="danger" className="mx-1" onClick={()=>this.statusFilter(1)}>Espera</Button>
+          <Button variant="success" className="mx-1" onClick={()=>this.statusFilter(2)}>Cerrado</Button>
+          <Button variant="dark" className="mx-1" onClick={()=>this.getTicket()}>Todos</Button>
           <input style={{float:"right"}} value={this.state.search} placeholder="Search TicketName" type="text" onChange={this.editSearchTerm}/>
           <TableContainer component={Paper}>
       
@@ -252,13 +252,13 @@ class ShowTickets extends Component {
         <TableHead>
           <TableRow>
             
-            <TableCell>TicketName</TableCell>
-            <TableCell align="right">Content</TableCell>
-            <TableCell align="right">İmage</TableCell>
-            <TableCell align="right">Message</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Change Status</TableCell>
-            <TableCell align="right" >Add Message</TableCell>
+            <TableCell>Nombre</TableCell>
+            <TableCell align="right">Contenido</TableCell>
+            <TableCell align="right">Imagen</TableCell>
+            <TableCell align="right">Historial</TableCell>
+            <TableCell align="right">Estado</TableCell>
+            <TableCell align="right">Cambiar Estado</TableCell>
+            <TableCell align="right" >Agregar notas</TableCell>
             
           </TableRow>
         </TableHead>
@@ -282,41 +282,41 @@ class ShowTickets extends Component {
               
               <TableCell align="right"><Dropdown>
 <Dropdown.Toggle    size="sm" variant="success" id="dropdown-basic">
-    Change Status
+    Cambiar estado
   </Dropdown.Toggle>
 
   <Dropdown.Menu>
-    <Dropdown.Item  onClick={()=>this.changeStatus(row._id,0)}>Opening</Dropdown.Item>
-    <Dropdown.Item onClick={()=>this.changeStatus(row._id,1)}>Waiting</Dropdown.Item>
-    <Dropdown.Item onClick={()=>this.changeStatus(row._id,2)}>Closed</Dropdown.Item>
+    <Dropdown.Item  onClick={()=>this.changeStatus(row._id,0)}>Abierto</Dropdown.Item>
+    <Dropdown.Item onClick={()=>this.changeStatus(row._id,1)}>Espera</Dropdown.Item>
+    <Dropdown.Item onClick={()=>this.changeStatus(row._id,2)}>Cerrado</Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown></TableCell>
 <TableCell align="right">   <>
       <Button    name="addButton" size="sm" variant="primary" onClick={()=>this.handleShow(row._id)}>
 
-        Add Message
+        Agregar notas
       </Button> 
 
       
 
       <Modal show={this.state.show} onHide={()=>this.handleClose()}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Message </Modal.Title>
+          <Modal.Title>Agregar notas</Modal.Title>
         </Modal.Header>
         <Modal.Body><form>
   <label>
-    Message : 
+    Mensaje : 
     <input type="text" name="message" value={this.state.message} onChange={this.handleChange} />
   </label>
 </form>
 </Modal.Body> 
         <Modal.Footer>
           <Button variant="secondary" onClick={()=>this.handleClose()}>
-            Close
+            Cerrar
           </Button>
 
           <Button variant="primary"  onClick={()=>this.handleAddMessage(this.state.id,this.state.message)}>
-            Add Message
+            Agregar mensaje
           </Button>
         </Modal.Footer>
       </Modal>
@@ -330,7 +330,7 @@ class ShowTickets extends Component {
   </div>:
         <div className="jumbotron mt-5">
         <div className="col-sm-8 mx-auto">
-          <h1 className="text-center">USER PAGE<br></br>TICKETS</h1>
+          <h1 className="text-center">Paginag Usuario<br></br>TICKETS</h1>
         </div>
        
         <TableContainer component={Paper}>
@@ -339,12 +339,12 @@ class ShowTickets extends Component {
       <TableHead>
         <TableRow>
           
-          <TableCell>TicketName</TableCell>
-          <TableCell align="right">Content</TableCell>
-          <TableCell align="right">İmage</TableCell>
-          <TableCell align="right">Message</TableCell>
-          <TableCell align="right">Status</TableCell>
-          <TableCell align="right" >Add Message</TableCell>
+          <TableCell>Nombre</TableCell>
+          <TableCell align="right">Contenido</TableCell>
+          <TableCell align="right">Imagen</TableCell>
+          <TableCell align="right">Mensaje</TableCell>
+          <TableCell align="right">Estado</TableCell>
+          <TableCell align="right" >Agregar nota</TableCell>
           
         </TableRow>
       </TableHead>
@@ -369,29 +369,29 @@ class ShowTickets extends Component {
 <TableCell align="right">   <>
     <Button    name="addButton" size="sm" variant="primary" onClick={()=>this.handleShow(row._id)}>
 
-      Add Message
+     Agregar mensaje
     </Button> 
 
     
 
     <Modal show={this.state.show} onHide={()=>this.handleClose()}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Message</Modal.Title>
+        <Modal.Title>Agregar mensaje</Modal.Title>
       </Modal.Header>
       <Modal.Body><form>
 <label>
-  Message : 
+  Mensaje : 
   <input type="text" name="message" value={this.state.message} onChange={this.handleChange} />
 </label>
 </form>
 </Modal.Body> 
       <Modal.Footer>
         <Button variant="secondary" onClick={()=>this.handleClose()}>
-          Close
+          Cerrar
         </Button>
    
         <Button variant="primary"  onClick={()=>this.handleAddMessage(this.state.id,this.state.message)}>
-          Add Message
+          Agregar mensaje
         </Button>
       </Modal.Footer>
     </Modal>

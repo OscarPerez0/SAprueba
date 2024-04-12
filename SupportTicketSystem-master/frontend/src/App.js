@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-            <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.7/css/dx.common.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.7/css/dx.light.css" />
+            <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.2.7/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.2.7/css/dx.light.css" />
   
 
     <script src="https://unpkg.com/core-js@2.4.1/client/shim.min.js"></script>

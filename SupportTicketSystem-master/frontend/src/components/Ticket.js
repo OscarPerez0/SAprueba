@@ -59,7 +59,7 @@ class Ticket extends Component {
 
     axios({
       method: 'post',
-      url: 'tickets/addTickets',
+      url: 'http://34.173.225.143:5000/addTickets',
       data: formData,
       headers: {'Content-Type': 'multipart/form-data' }
       })
@@ -89,7 +89,7 @@ class Ticket extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+      $imagePreview = (<div className="previewText">Selecione Imagen</div>);
     }
 
 
@@ -101,30 +101,30 @@ class Ticket extends Component {
           
         <div className="jumbotron mt-5">
           <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">ADD TICKET</h1>
+            <h1 className="text-center">Enviar Ticket</h1>
           </div>
           <form encType="multipart/form-data" noValidate onSubmit={this.onSubmit} >
           <div>
-          <label htmlFor="name" className="mx-3"><p>Ticket Name</p></label> 
-          <input type="text" id="name" className="mx-2"placeholder="Enter ticket name"
+          <label htmlFor="name" className="mx-3"><p>Nombre</p></label> 
+          <input type="text" id="name" className="mx-2"placeholder="nombre"
                   value={this.state.name}
                   onChange={this.onChange}  name="name" required ></input>
           </div>
           <br></br>
           <div> 
             
-                <label htmlFor="content" className="mx-3"><p>Content</p></label> 
+                <label htmlFor="content" className="mx-3"><p>Contenido</p></label> 
                 <textarea id="content" name="content"  className="mx-4" rows="2" styles={{}}
-                          placeholder="Enter content"
+                          placeholder="contenido"
                           value={this.state.content}
                           onChange={this.onChange}  required> 
                 </textarea> 
            </div>  
            <br></br>
            <div> 
-                <label htmlFor="content" className="mx-3">Message</label> 
-                <textarea id="messages"  className="mx-3" name="messages" rows="2" className="mx-3"
-                          placeholder="Enter Message"
+                <label htmlFor="content" className="mx-3">Problema</label> 
+                <textarea id="messages"  className="mx-3" name="messages" rows="2" 
+                          placeholder="describa"
                           value={this.state.messages.text}
                           onChange={this.onChange}  required> 
                 </textarea> 
@@ -137,13 +137,13 @@ class Ticket extends Component {
               onChange={(e)=>this._handleImageChange(e)} />
             <button className="submitButton" 
               type="submit" 
-              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+              onClick={(e)=>this._handleSubmit(e)}>Subir Imagen</button>
           </form>
          
         </div>
         <br></br>
             <div> 
-                <button type="submit">Submit</button> 
+                <button type="submit">Enviar</button> 
             </div> 
           </form>
         </div>

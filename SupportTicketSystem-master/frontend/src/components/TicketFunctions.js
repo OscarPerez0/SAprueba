@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const ticket = newTicket => {
   return axios
-    .post('tickets/addTickets', {
+    .post('http://34.173.225.143:5000/tickets/addTickets', {
       name: newTicket.name,
       img: this.state.file,
       content: newTicket.content,
@@ -15,7 +15,7 @@ export const ticket = newTicket => {
 
 export const getTicket = test => {
   return axios
-    .get('tickets/getTicketAll', {
+    .get('http://34.173.225.143:5000/tickets/getTicketAll', {
       //headers: { Authorization: ` ${this.getToken()}` }
     })
     .then(response => {
